@@ -1,13 +1,10 @@
 export default function Home() {
-  const brands = [
-    { name: "owlsafe", link: "https://owlsafe.co.uk", type: "owlsafe" },
-    { name: "HeronSight", link: "https://heronsight.co.uk", type: "heronsight" },
-    {
-      name: "Asbestos Survey Scotland",
-      link: "https://asbestossurveyscotland.co.uk",
-      type: "scotland",
-    },
-    { name: "Viaduct Asbestos Surveys", link: "#", type: "viaduct" },
+  const services = [
+    "Website Design",
+    "Business Email Setup",
+    "Website Hosting",
+    "Technical Support",
+    "Lead Generation",
   ];
 
   return (
@@ -17,32 +14,6 @@ export default function Home() {
       </div>
 
       <style>{`
-        @keyframes northcrow-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-50%); }
-        }
-
-        .northcrow-track {
-          animation: northcrow-marquee 18s linear infinite;
-        }
-
-        .brand-mask {
-          mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 18%,
-            black 82%,
-            transparent 100%
-          );
-          -webkit-mask-image: linear-gradient(
-            to right,
-            transparent 0%,
-            black 18%,
-            black 82%,
-            transparent 100%
-          );
-        }
-
         .intro-screen {
           position: fixed;
           inset: 0;
@@ -97,6 +68,42 @@ export default function Home() {
             pointer-events: none;
           }
         }
+
+        @keyframes service-focus {
+          0% {
+            opacity: 0;
+            transform: scale(0.88);
+            filter: blur(12px);
+          }
+
+          15% {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
+          }
+
+          68% {
+            opacity: 1;
+            transform: scale(1);
+            filter: blur(0px);
+          }
+
+          100% {
+            opacity: 0;
+            transform: scale(1.12);
+            filter: blur(12px);
+          }
+        }
+
+        .service-word {
+          position: absolute;
+          inset: 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          opacity: 0;
+          animation: service-focus 15s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+        }
       `}</style>
 
       <section className="relative flex h-[100svh] items-center justify-center overflow-hidden px-6">
@@ -114,7 +121,7 @@ export default function Home() {
           />
 
           <h1 className="max-w-3xl text-5xl font-semibold lowercase leading-[1.02] tracking-tight text-white md:text-7xl">
-            building connections.
+            digital foundations.
           </h1>
 
           <a
@@ -124,56 +131,16 @@ export default function Home() {
             work with us
           </a>
 
-          <div className="mt-11 w-full max-w-5xl">
-            <p className="mb-4 text-xs uppercase tracking-[0.35em] text-white/30">
-              our brands
-            </p>
-
-            <div className="brand-mask relative w-full overflow-hidden py-2">
-              <div className="northcrow-track flex w-max items-center gap-20">
-                {[...brands, ...brands].map((brand, index) => (
-                  <a
-                    key={`${brand.name}-${index}`}
-                    href={brand.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex h-14 min-w-[230px] shrink-0 items-center justify-center text-2xl tracking-tight opacity-60 transition duration-300 hover:opacity-100"
-                  >
-                    {brand.type === "owlsafe" ? (
-                      <span className="font-bold lowercase">
-                        <span className="text-white/45">owl</span>
-                        <span className="text-white/75">safe</span>
-                      </span>
-                    ) : brand.type === "heronsight" ? (
-                      <span>
-                        <span className="font-bold text-white/75">Heron</span>
-                        <span className="font-light text-white/50">Sight</span>
-                      </span>
-                    ) : brand.type === "scotland" ? (
-                     <span className="flex flex-col items-center leading-none font-[var(--font-roboto-slab)]">
-  <span className="w-[168px] text-center text-[19px] font-bold tracking-[0.22em] text-white/70">
-    ASBESTOS
-  </span>
-
-  <span className="mt-1 text-[10px] font-semibold tracking-[0.28em] text-white/45">
-    SURVEY SCOTLAND
-  </span>
-</span>
-                    ) : (
-                      <span className="flex flex-col items-center leading-none font-[var(--font-roboto-slab)]">
-  <span className="w-[168px] text-center text-[19px] font-bold tracking-[0.32em] text-white/70">
-    VIADUCT
-  </span>
-
-  <span className="mt-1 text-[10px] font-semibold tracking-[0.2em] text-white/45">
-    ASBESTOS SURVEYS
-  </span>
-</span>
-                    )}
-                  </a>
-                ))}
+          <div className="relative mt-12 h-20 w-full max-w-5xl overflow-hidden md:h-28">
+            {services.map((service, index) => (
+              <div
+                key={service}
+                className="service-word text-3xl font-semibold tracking-tight text-white/70 md:text-5xl"
+                style={{ animationDelay: `${index * 3}s` }}
+              >
+                {service}
               </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
