@@ -1,10 +1,10 @@
 export default function Home() {
   const services = [
-    "Website Design",
-    "Business Email Setup",
-    "Website Hosting",
-    "Technical Support",
-    "Lead Generation",
+    "website design",
+    "business email setup",
+    "website hosting",
+    "technical support",
+    "lead generation",
   ];
 
   return (
@@ -76,16 +76,22 @@ export default function Home() {
             filter: blur(12px);
           }
 
-          15% {
+          5% {
             opacity: 1;
             transform: scale(1);
             filter: blur(0px);
           }
 
-          68% {
+          13% {
             opacity: 1;
             transform: scale(1);
             filter: blur(0px);
+          }
+
+          18% {
+            opacity: 0;
+            transform: scale(1.12);
+            filter: blur(12px);
           }
 
           100% {
@@ -103,6 +109,7 @@ export default function Home() {
           justify-content: center;
           opacity: 0;
           animation: service-focus 15s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+          animation-fill-mode: both;
         }
       `}</style>
 
